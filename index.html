@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OptimaNova AI | Cook's Pest Control AI Training Proposal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #112240;
+    --navy-card: #172a45;
+    --navy-light: #1e3a5f;
+    --border: rgba(255,255,255,0.08);
+    --border-accent: rgba(198,160,80,0.3);
+    --text: #e8edf5;
+    --text-muted: #8fa3bf;
+    --text-dim: #4a6080;
+    --gold: #c6a050;
+    --gold-light: #e8c97a;
+    --blue-accent: #4a9eff;
+    --teal: #2dd4bf;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Inter',sans-serif; background:var(--navy); color:var(--text); line-height:1.65; overflow-x:hidden; }
+
+  /* HERO */
+  .hero {
+    min-height:100vh; display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    text-align:center; padding:80px 40px 60px;
+    position:relative; overflow:hidden;
+    background:linear-gradient(180deg,#07101f 0%,var(--navy) 100%);
+  }
+  .hero::before {
+    content:''; position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 0%,rgba(198,160,80,0.12) 0%,transparent 65%),
+      radial-gradient(ellipse 40% 30% at 85% 75%,rgba(74,158,255,0.08) 0%,transparent 55%);
+    pointer-events:none;
+  }
+  .hero::after {
+    content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent);
+  }
+
+  .hero-tag {
+    font-size:11px; font-weight:600; letter-spacing:0.25em;
+    text-transform:uppercase; color:var(--gold);
+    background:rgba(198,160,80,0.1); border:1px solid rgba(198,160,80,0.25);
+    padding:6px 18px; border-radius:20px; margin-bottom:32px; display:inline-block;
+  }
+  .hero h1 {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2.8rem,6vw,5.2rem);
+    font-weight:700; line-height:1.05; letter-spacing:-0.02em;
+    color:#f0f5ff; max-width:860px; margin-bottom:8px;
+  }
+  .hero h1 em { font-style:italic; font-weight:400; color:var(--gold-light); }
+  .hero-sub {
+    font-size:17px; font-weight:300; color:var(--text-muted);
+    max-width:600px; margin:24px auto 48px; line-height:1.75;
+  }
+
+  .hero-card {
+    background:rgba(255,255,255,0.04); border:1px solid var(--border-accent);
+    border-radius:16px; padding:24px 36px;
+    display:inline-flex; align-items:center; gap:20px; margin-bottom:56px;
+  }
+  .hero-card .div { width:1px; height:40px; background:var(--border-accent); }
+  .hct { text-align:left; }
+  .hct .lbl { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dim); font-weight:500; margin-bottom:4px; }
+  .hct .nm { font-family:'Playfair Display',serif; font-size:19px; font-weight:600; color:var(--text); letter-spacing:0.01em; }
+  .hct .ttl { font-size:12px; color:var(--text-muted); margin-top:2px; }
+
+  .presented-to { border-top:1px solid var(--border-accent); padding-top:36px; width:100%; max-width:560px; }
+  .pt-lbl { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dim); margin-bottom:16px; }
+  .pt-person { margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid var(--border); }
+  .pt-person:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
+  .pt-name { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:#f0f5ff; }
+  .pt-title { font-size:12px; color:var(--text-muted); margin-top:3px; line-height:1.55; }
+
+  .scroll-hint {
+    font-size:11px; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--text-dim); display:flex; flex-direction:column; align-items:center; gap:10px; margin-top:44px;
+  }
+  .scroll-hint::after {
+    content:''; width:1px; height:44px;
+    background:linear-gradient(to bottom,var(--gold),transparent);
+    animation:pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:.3}50%{opacity:.9}}
+
+  /* LAYOUT */
+  .wrap { max-width:1120px; margin:0 auto; padding:80px 40px; }
+  .slbl { font-size:10px; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
+  .stitle { font-family:'Playfair Display',serif; font-size:clamp(1.9rem,3.5vw,2.9rem); font-weight:700; line-height:1.15; margin-bottom:16px; color:#f0f5ff; }
+  .stitle em { font-style:italic; font-weight:400; }
+  .sbody { font-size:15px; color:var(--text-muted); max-width:680px; line-height:1.85; }
+  hr.divider { border:none; border-top:1px solid var(--border); max-width:1120px; margin:0 auto; }
+
+  /* CARDS */
+  .cgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; margin-top:44px; }
+  .card { background:var(--navy-card); border:1px solid var(--border); border-radius:14px; padding:28px; transition:border-color .25s,transform .2s; }
+  .card:hover { border-color:rgba(198,160,80,0.25); transform:translateY(-2px); }
+  .cicon { width:42px; height:42px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:16px; }
+  .ci-g{background:rgba(198,160,80,0.12)} .ci-b{background:rgba(74,158,255,0.12)}
+  .ci-t{background:rgba(45,212,191,0.12)} .ci-r{background:rgba(248,113,113,0.12)}
+  .card h3 { font-size:15px; font-weight:600; margin-bottom:9px; color:#f0f5ff; }
+  .card p { font-size:13px; color:var(--text-muted); line-height:1.75; }
+  .card .stat { display:inline-block; margin-top:12px; font-size:11px; font-weight:600; letter-spacing:0.1em; color:var(--gold); background:rgba(198,160,80,0.1); border:1px solid rgba(198,160,80,0.2); border-radius:20px; padding:3px 12px; }
+
+  /* WHY GRID */
+  .wgrid { display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:44px; }
+  @media(max-width:680px){.wgrid{grid-template-columns:1fr}}
+  .wcard { background:var(--navy-card); border:1px solid var(--border); border-radius:14px; padding:28px 30px; display:flex; align-items:flex-start; gap:16px; }
+  .wnum { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:rgba(198,160,80,0.2); line-height:1; flex-shrink:0; margin-top:-4px; }
+  .wcard h3 { font-size:15px; font-weight:600; color:#f0f5ff; margin-bottom:8px; }
+  .wcard p { font-size:13px; color:var(--text-muted); line-height:1.75; }
+
+  /* PHASE BLOCKS */
+  .pblock { background:var(--navy-card); border:1px solid var(--border); border-radius:20px; padding:52px; margin-bottom:24px; position:relative; overflow:hidden; }
+  .pblock::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold)); opacity:.7; }
+  .phd { display:flex; align-items:flex-start; gap:22px; margin-bottom:24px; }
+  .pnum { width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:20px; font-weight:700; flex-shrink:0; margin-top:2px; }
+  .n1{background:linear-gradient(135deg,#c6a050,#e8c97a);color:#0a1628}
+  .n2{background:linear-gradient(135deg,#4a9eff,#7bb8ff);color:#0a1628}
+  .n3{background:linear-gradient(135deg,#2dd4bf,#5eead4);color:#0a1628}
+  .pttls h2 { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#f0f5ff; line-height:1.2; }
+  .pttls .sub { font-size:13px; color:var(--text-muted); margin-top:3px; }
+  .pbody { font-size:15px; color:var(--text-muted); line-height:1.85; margin-bottom:32px; max-width:780px; }
+  .feats { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; }
+  .feat { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:12px; padding:20px 22px; }
+  .feat h4 { font-size:13px; font-weight:600; color:#f0f5ff; margin-bottom:7px; }
+  .feat p { font-size:13px; color:var(--text-muted); line-height:1.7; }
+
+  /* OUTCOMES */
+  .outcomes { display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--border); border-radius:16px; overflow:hidden; margin-top:44px; }
+  .oc { padding:36px 28px; border-right:1px solid var(--border); text-align:center; background:var(--navy-card); transition:background .25s; }
+  .oc:last-child{border-right:none} .oc:hover{background:var(--navy-light)}
+  .oc .v { font-family:'Playfair Display',serif; font-size:38px; font-weight:700; letter-spacing:-0.02em; color:var(--gold-light); display:block; margin-bottom:8px; }
+  .oc .l { font-size:13px; color:var(--text-muted); line-height:1.55; }
+  @media(max-width:680px){
+    .outcomes{grid-template-columns:1fr}
+    .oc{border-right:none;border-bottom:1px solid var(--border)}
+    .oc:last-child{border-bottom:none}
+    .pblock{padding:32px 24px}
+    .hero h1{font-size:2.5rem}
+  }
+
+  /* ABOUT BAND */
+  .about-band { background:var(--navy-mid); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .about-inner { max-width:1120px; margin:0 auto; padding:80px 40px; display:grid; grid-template-columns:1.1fr 1fr; gap:60px; align-items:center; }
+  @media(max-width:760px){.about-inner{grid-template-columns:1fr;gap:40px}}
+  .astats { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .asc { background:var(--navy-card); border:1px solid var(--border); border-radius:12px; padding:24px 20px; text-align:center; }
+  .asc .av { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:var(--gold-light); display:block; margin-bottom:6px; }
+  .asc .al { font-size:12px; color:var(--text-muted); line-height:1.5; }
+
+  /* STEPS */
+  .srow { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:44px; }
+  @media(max-width:680px){.srow{grid-template-columns:1fr}}
+  .step { text-align:center; padding:36px 24px; background:var(--navy-card); border:1px solid var(--border); border-radius:16px; }
+  .sn { width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--gold-light)); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#0a1628; margin:0 auto 18px; }
+  .step h4 { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#f0f5ff; margin-bottom:10px; }
+  .step p { font-size:13px; color:var(--text-muted); line-height:1.7; }
+
+  /* FOOTER */
+  .fcta { text-align:center; padding:90px 40px; max-width:1120px; margin:0 auto; position:relative; }
+  .fcta::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(198,160,80,0.07) 0%,transparent 70%); pointer-events:none; }
+  .fcta h2 { font-family:'Playfair Display',serif; font-size:clamp(2.4rem,5vw,4rem); font-weight:700; line-height:1.1; margin-bottom:16px; color:#f0f5ff; }
+  .fcta h2 em { font-style:italic; font-weight:400; color:var(--gold-light); }
+  .fcta .ftag { font-size:15px; color:var(--text-muted); margin-bottom:56px; }
+  .contacts { display:flex; justify-content:center; gap:1px; margin-bottom:52px; flex-wrap:wrap; }
+  .cc { background:var(--navy-card); border:1px solid var(--border-accent); padding:34px 44px; min-width:260px; }
+  .cc:first-child{border-radius:16px 0 0 16px} .cc:last-child{border-radius:0 16px 16px 0}
+  @media(max-width:600px){.cc{width:100%;border-radius:16px!important}}
+  .cc .crole { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dim); margin-bottom:8px; }
+  .cc .cname { font-family:'Playfair Display',serif; font-size:21px; font-weight:700; color:#f0f5ff; margin-bottom:4px; }
+  .cc .ctitle { font-size:12px; color:var(--text-muted); margin-bottom:12px; }
+  .cc a { font-size:13px; color:var(--blue-accent); text-decoration:none; transition:color .2s; }
+  .cc a:hover{color:var(--gold-light)}
+  .wordmark { font-size:12px; color:var(--text-dim); letter-spacing:0.06em; border-top:1px solid var(--border); padding-top:28px; max-width:480px; margin:0 auto; }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-tag">AI Staff Training Proposal</div>
+  <h1>Built for the Crews<br>Who Keep America <em>Pest-Free.</em></h1>
+  <p class="hero-sub">A hands-on AI training program designed specifically for Cook's Pest Control — equipping every level of your organization to work smarter, serve customers better, and lead the industry into its next era.</p>
+
+  <div class="hero-card">
+    <div style="background:var(--navy-light);border-radius:10px;width:50px;height:50px;display:flex;align-items:center;justify-content:center;font-size:22px;">🐜</div>
+    <div class="div"></div>
+    <div class="hct">
+      <div class="lbl">Prepared for</div>
+      <div class="nm">Cook's Pest Control</div>
+      <div class="ttl">Founded 1928 &nbsp;·&nbsp; Decatur, Alabama &nbsp;·&nbsp; Southeast's Largest Family-Owned Pest Control Company</div>
+    </div>
+  </div>
+
+  <div class="presented-to">
+    <div class="pt-lbl">Presented To</div>
+    <div class="pt-person">
+      <div class="pt-name">Joey Harris</div>
+      <div class="pt-title">CEO, Cook's Pest Control</div>
+    </div>
+    <div class="pt-person">
+      <div class="pt-name">Faye Golden</div>
+      <div class="pt-title">Director of Governmental Affairs, Cook's Pest Control<br>Advisor, Black Ownership Matters</div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">Explore</div>
+</section>
+
+<!-- INDUSTRY REALITY -->
+<div class="wrap">
+  <div class="slbl">The Industry Reality</div>
+  <h2 class="stitle">The Pest Control Industry Is Changing Fast.<br><em>Most Companies Are Falling Behind.</em></h2>
+  <p class="sbody">Cook's has built 96 years of excellence on training, integrity, and people. But the competitive landscape is shifting. Companies that invest in AI staff training now will define the next decade of the industry.</p>
+
+  <div class="cgrid">
+    <div class="card">
+      <div class="cicon ci-g">📈</div>
+      <h3>Rising Costs Squeezing Margins</h3>
+      <p>89% of pest control companies are struggling with rising material and equipment costs. Without AI-driven efficiency, margin compression becomes an existential threat to even the best operators.</p>
+      <span class="stat">89% report rising costs in 2025</span>
+    </div>
+    <div class="card">
+      <div class="cicon ci-b">🤖</div>
+      <h3>AI Adoption Is Accelerating</h3>
+      <p>AI use in pest control is growing rapidly across the industry. Early adopters are already pulling ahead on efficiency, customer service, and cost savings — the window to act is now.</p>
+      <span class="stat">Industry AI adoption growing fast</span>
+    </div>
+    <div class="card">
+      <div class="cicon ci-t">👷</div>
+      <h3>Workforce &amp; Retention Challenges</h3>
+      <p>Finding and keeping qualified technicians ranks as a top-five industry threat. 89% of companies plan wage increases — AI amplifies every person's output without adding headcount.</p>
+      <span class="stat">89% increasing wages in 2025</span>
+    </div>
+    <div class="card">
+      <div class="cicon ci-r">📱</div>
+      <h3>Customers Expect More</h3>
+      <p>Homeowners now expect mobile booking, real-time technician updates, and 24/7 access. Companies using outdated processes risk losing customers to more agile, tech-forward competitors.</p>
+      <span class="stat">87% drop in missed calls with AI</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- WHY COOK'S -->
+<div class="wrap">
+  <div class="slbl">Cook's Competitive Advantage</div>
+  <h2 class="stitle">Cook's Already Has What<br><em>Most Companies Can't Buy.</em></h2>
+  <p class="sbody">Cook's opened a state-of-the-art employee training facility in Decatur in 2015. The foundation is exceptional. AI training doesn't replace what makes Cook's great — it multiplies it across every branch and every employee.</p>
+
+  <div class="wgrid">
+    <div class="wcard">
+      <div class="wnum">01</div>
+      <div>
+        <h3>A Proven Training Culture</h3>
+        <p>Cook's already uses computer-based, classroom, and field training refreshed monthly. AI training integrates naturally into a workforce that already values continuous learning.</p>
+      </div>
+    </div>
+    <div class="wcard">
+      <div class="wnum">02</div>
+      <div>
+        <h3>Scale That Makes AI ROI Immediate</h3>
+        <p>With 1,600+ employees across 40+ branches in 6 states, even a 10% efficiency gain translates to millions in recovered annual value — fast.</p>
+      </div>
+    </div>
+    <div class="wcard">
+      <div class="wnum">03</div>
+      <div>
+        <h3>300,000+ Customer Relationships</h3>
+        <p>Cook's serves over 300,000 customers. AI-powered scheduling, communication, and follow-up means no relationship falls through the cracks — ever.</p>
+      </div>
+    </div>
+    <div class="wcard">
+      <div class="wnum">04</div>
+      <div>
+        <h3>Regulatory Expertise Worth Protecting</h3>
+        <p>Cook's multi-state compliance expertise is a strategic asset. AI automates certification tracking and compliance reporting so your experts stay focused on high-value work.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- THE PROGRAM -->
+<div class="wrap">
+  <div class="slbl">The Program</div>
+  <h2 class="stitle">Three Phases.<br><em>One Transformation.</em></h2>
+  <p class="sbody" style="margin-bottom:44px;">A structured AI training engagement that goes from diagnosis to implementation to lasting capability — built around Cook's operations, culture, and people.</p>
+
+  <div class="pblock">
+    <div class="phd">
+      <div class="pnum n1">1</div>
+      <div class="pttls">
+        <h2>AI Readiness Audit &amp; Diagnostic</h2>
+        <div class="sub">Weeks 1–2 &nbsp;·&nbsp; Leadership &amp; Operations</div>
+      </div>
+    </div>
+    <p class="pbody">Before any training begins, we map Cook's current workflows across branches to identify exactly where AI creates the highest-impact gains. You'll walk away with a custom report showing where Cook's stands today and a prioritized roadmap for what to tackle first.</p>
+    <div class="feats">
+      <div class="feat"><h4>Workflow Mapping</h4><p>We audit scheduling, routing, dispatch, customer communication, compliance reporting, and training processes across branches.</p></div>
+      <div class="feat"><h4>AI Opportunity Report</h4><p>A written diagnostic showing exactly where AI can reduce labor hours, cut costs, and improve customer experience at Cook's scale.</p></div>
+      <div class="feat"><h4>Technology Stack Review</h4><p>We assess Cook's existing tech tools to identify where AI can be layered in without disrupting current systems.</p></div>
+      <div class="feat"><h4>Leadership Briefing</h4><p>A concise executive briefing for Joey Harris and leadership on findings, priorities, and the investment case for AI adoption at Cook's.</p></div>
+    </div>
+  </div>
+
+  <div class="pblock">
+    <div class="phd">
+      <div class="pnum n2">2</div>
+      <div class="pttls">
+        <h2>Role-Based AI Staff Training</h2>
+        <div class="sub">Weeks 3–6 &nbsp;·&nbsp; All Staff Levels</div>
+      </div>
+    </div>
+    <p class="pbody">Not a generic AI seminar. Every training session is tailored to the specific role — technicians learn different tools than dispatchers, and managers learn differently than office staff. Hands-on. Practical. Everyone leaves with something they can use tomorrow morning.</p>
+    <div class="feats">
+      <div class="feat"><h4>Technician Training</h4><p>AI-assisted route prep, mobile reporting, voice-to-text documentation, and smart scheduling — built for field work.</p></div>
+      <div class="feat"><h4>Office &amp; Dispatch Staff</h4><p>AI-powered customer communication, automated scheduling, inquiry triage, and response drafting that cuts administrative load significantly.</p></div>
+      <div class="feat"><h4>Sales &amp; Inspectors</h4><p>AI-assisted proposal generation, customer history summaries, follow-up automation, and lead scoring to close more accounts faster.</p></div>
+      <div class="feat"><h4>Managers &amp; Branch Leaders</h4><p>AI dashboards for productivity tracking, compliance monitoring, performance analytics, and smarter workforce planning across locations.</p></div>
+    </div>
+  </div>
+
+  <div class="pblock">
+    <div class="phd">
+      <div class="pnum n3">3</div>
+      <div class="pttls">
+        <h2>Implementation Support &amp; AI Roadmap</h2>
+        <div class="sub">Weeks 7–10 &nbsp;·&nbsp; Leadership &amp; IT</div>
+      </div>
+    </div>
+    <p class="pbody">Training without implementation is just education. We stay engaged through the rollout to ensure tools are adopted, staff confidence is building, and measurable results are tracked. You'll also receive a 12-month AI roadmap with clear milestones.</p>
+    <div class="feats">
+      <div class="feat"><h4>Pilot Program Support</h4><p>We help launch AI tools in 2–3 pilot branches first, measure results, and refine before rolling out company-wide.</p></div>
+      <div class="feat"><h4>AI Champion Coaching</h4><p>We identify and coach internal AI champions at Cook's — staff members who become ongoing advocates and trainers within the company.</p></div>
+      <div class="feat"><h4>12-Month Strategic Roadmap</h4><p>A phased plan for AI expansion across Cook's operations — quick wins in months 1–3 and deeper integrations in months 6–12.</p></div>
+      <div class="feat"><h4>Outcome Measurement</h4><p>Clear KPIs tied to efficiency gains, cost savings, customer satisfaction scores, and staff adoption rates — so ROI is visible from the start.</p></div>
+    </div>
+  </div>
+
+  <div class="outcomes">
+    <div class="oc"><span class="v">30%</span><div class="l">Fuel &amp; routing savings for companies that adopt AI scheduling</div></div>
+    <div class="oc"><span class="v">11+ hrs</span><div class="l">Weekly admin time saved per employee with AI workflow tools</div></div>
+    <div class="oc"><span class="v">87%</span><div class="l">Reduction in missed customer calls with AI-assisted triage</div></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<div class="about-band">
+  <div class="about-inner">
+    <div>
+      <div class="slbl">About OptimaNova AI</div>
+      <h2 class="stitle" style="max-width:420px;">From <em>AI-Curious</em> to AI-Confident.</h2>
+      <p class="sbody" style="margin-bottom:20px;">OptimaNova AI is a Washington, D.C.-based consulting firm that helps mission-driven organizations operate with Fortune 500-level AI capabilities — without the Fortune 500 budget. We specialize in human adoption at scale. We don't just deploy technology; we build the people-side of transformation.</p>
+      <p class="sbody">Joe Paul, Founder &amp; CEO, is a former 29th Executive Director of Alpha Phi Alpha Fraternity, Inc. and was named one of Washington Business Journal's "11 Startups to Watch in 2025."</p>
+    </div>
+    <div class="astats">
+      <div class="asc"><span class="av">WBJ</span><div class="al">"11 Startups to Watch in 2025" — Washington Business Journal</div></div>
+      <div class="asc"><span class="av">20+</span><div class="al">Years of executive leadership experience</div></div>
+      <div class="asc"><span class="av">D.C.</span><div class="al">Based in the nation's capital</div></div>
+      <div class="asc"><span class="av">Human</span><div class="al">Adoption at scale, not just tech deployment</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- NEXT STEPS -->
+<div class="wrap">
+  <div class="slbl">What's Next</div>
+  <h2 class="stitle">Getting Started Is Simple.</h2>
+  <p class="sbody">The best partnerships begin with a conversation. We're ready when you are.</p>
+  <div class="srow">
+    <div class="step"><div class="sn">1</div><h4>Discovery Call</h4><p>A 30-minute conversation with Joey Harris and Faye Golden to align on priorities, timelines, and scope across Cook's branches.</p></div>
+    <div class="step"><div class="sn">2</div><h4>Custom Proposal</h4><p>We deliver a detailed scope of work, timeline, and investment based on Cook's specific size, branch structure, and goals.</p></div>
+    <div class="step"><div class="sn">3</div><h4>Launch</h4><p>We begin with the audit, move into role-based training, and build lasting AI capability into Cook's culture — measurable outcomes from day one.</p></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="fcta">
+  <h2>Let's Build Something<br><em>That Lasts.</em></h2>
+  <p class="ftag">96 years of excellence. The next chapter runs on AI.</p>
+  <div class="contacts">
+    <div class="cc"><div class="crole">Your Point of Contact</div><div class="cname">Shann Johnson</div><div class="ctitle">VP of Strategic Partnerships, OptimaNova AI</div><a href="mailto:shann@optimanova.ai">shann@optimanova.ai</a></div>
+    <div class="cc"><div class="crole">CEO</div><div class="cname">Joe Paul</div><div class="ctitle">Founder &amp; CEO, OptimaNova AI</div><a href="mailto:joepaul@optimanova.ai">joepaul@optimanova.ai</a></div>
+  </div>
+  <div class="wordmark">OptimaNova AI &nbsp;·&nbsp; Washington, D.C. &nbsp;·&nbsp; optimanova.ai</div>
+</div>
+
+</body>
+</html>
